@@ -7,8 +7,6 @@ import utility.Driver;
 
 public class Login {
 
-
-
     public Login(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
@@ -21,6 +19,12 @@ public class Login {
 
     @FindBy(xpath = "//button[@class='btn btn-lg btn-login btn-block']")
     public WebElement loginBtn;
+
+    @FindBy(xpath = "//span[@class='username']")
+    public WebElement userName;
+
+    @FindBy(xpath = "//a[@href='index.php?p=cikis-yap']")
+    public WebElement Cikis;
 
     @FindBy(xpath = "//a[@class=\"active\"]/span")
     public WebElement Anasayfa;

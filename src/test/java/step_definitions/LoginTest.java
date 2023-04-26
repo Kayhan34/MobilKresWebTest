@@ -4,9 +4,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.Login;
 import utility.ConfigurationReader;
@@ -19,7 +18,9 @@ public class LoginTest {
     @Given("user go to the login page")
     public void user_go_to_the_login_page() {
         Driver.getDriver().get(ConfigurationReader.getProperty("login_url"));
+
     }
+
     @When("user enters correct credentials")
     public void user_enters_correct_credentials() {
         String email = ConfigurationReader.getProperty("email");
@@ -27,28 +28,38 @@ public class LoginTest {
 
         login.emailInput.sendKeys(email);
         login.passwordInput.sendKeys(password);
-        WebDriverWait wait= new WebDriverWait(Driver.getDriver(),3);
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 3);
         login.loginBtn.click();
 
     }
+
     @Then("user should be in {string}")
     public void user_should_be_in(String string) {
         String actualTitle = login.Anasayfa.getText();
-        Assert.assertEquals(string,actualTitle);
+        Assert.assertEquals(string, actualTitle);
+    }
+
+    @Then("user should be out")
+    public void user_should_be_out() {
+        login.userName.click();
+        login.Cikis.click();
     }
 
     @When("user enters wrong credentials")
     public void user_enters_wrong_credentials() {
         String wrong_mail = ConfigurationReader.getProperty("wrong_mail");
-        String password = ConfigurationReader.getProperty("password");
+        String wrong_password = ConfigurationReader.getProperty("wrong_password");
 
         login.emailInput.sendKeys(wrong_mail);
-        login.passwordInput.sendKeys(password);
-        WebDriverWait wait= new WebDriverWait(Driver.getDriver(),3);
+        login.passwordInput.sendKeys(wrong_password);
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 3);
         login.loginBtn.click();
     }
+
     @Then("user should see {string}")
-    public void user_should_see (String string) {
+    public void user_should_see(String string) {
         Driver.getDriver().findElement(By.xpath("//div[@class=\"alert alert-warning fade in\"]/p")).isDisplayed();
+
+        Driver.closeDriver();
     }
 }
