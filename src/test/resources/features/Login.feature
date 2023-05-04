@@ -7,7 +7,7 @@ Feature: Login MKWeb
   Scenario: positive login test
     When user enters correct credentials
     Then user should be in "Anasayfa"
-    Then user should be out
+    Then user should be logout
 
   Scenario: negative login test
     When user enters wrong credentials

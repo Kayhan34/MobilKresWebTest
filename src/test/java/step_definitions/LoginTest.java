@@ -39,10 +39,10 @@ public class LoginTest {
         Assert.assertEquals(string, actualTitle);
     }
 
-    @Then("user should be out")
-    public void user_should_be_out() {
+    @Then("user should be logout")
+    public void user_should_be_logout() {
         login.userName.click();
-        login.Cikis.click();
+        login.Logout.click();
     }
 
     @When("user enters wrong credentials")

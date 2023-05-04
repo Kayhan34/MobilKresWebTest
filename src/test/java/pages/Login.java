@@ -24,11 +24,10 @@ public class Login {
     public WebElement userName;
 
     @FindBy(xpath = "//a[@href='index.php?p=cikis-yap']")
-    public WebElement Cikis;
+    public WebElement Logout;
 
     @FindBy(xpath = "//a[@class=\"active\"]/span")
     public WebElement Anasayfa;
-
     @FindBy(xpath = "//div[@class=\"alert alert-warning fade in\"]/p")
     public WebElement Alert;
 }
